@@ -1,6 +1,10 @@
 require 'spec_helper'
 
 describe Hydra::Groupy do
+  it "has a version number" do
+    expect(Hydra::Groupy::VERSION).not_to be nil
+  end
+
   describe '.configure' do
     before do
       Object.send(:remove_const, :Rails) if defined?(Rails)
