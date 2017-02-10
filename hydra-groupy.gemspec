@@ -8,6 +8,7 @@ Gem::Specification.new do |spec|
   spec.version       = Hydra::Groupy::VERSION
   spec.authors       = ["Jeremy Friesen"]
   spec.email         = ["jeremy.n.friesen@gmail.com"]
+  spec.license       = "Apache-2.0"
 
   spec.summary       = %q{Hydra group and role adapters}
   spec.description   = %q{The long awaited separation of groups and roles for Project Hydra.}
