@@ -7,6 +7,8 @@ module Hydra
     # @api public
     #
     # Contains the Curate::Indexer configuration information that is referenceable from wit
+    #
+    # @return [Hydra::Group::Configuration]
     # @see Hydra::Group::Configuration
     def self.configuration
       @configuration ||= Configuration.new
@@ -16,6 +18,7 @@ module Hydra
     #
     # Capture the configuration information
     #
+    # @yield [Hydra::Group::Configuration]
     # @see Hydra::Group::Configuration
     # @see .configuration
     # @see Hydra::Group::Railtie
