@@ -14,3 +14,7 @@ env:
     - NOKOGIRI_USE_SYSTEM_LIBRARIES=true
   matrix:
     - "RAILS_VERSION=5.0.1"
+
+addons:
+  code_climate:
+    repo_token: bb4cf766a96a21a484f4a6f147b97aade80919bf278296b0e3e8a662d6507c81
