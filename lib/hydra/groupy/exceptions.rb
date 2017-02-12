@@ -1,4 +1,4 @@
-module Groups
+module Hydra
   module Groupy
     module Exceptions
       # Isolating a common exception to assist with debugging.
