@@ -1,12 +1,15 @@
 require "hydra/groupy/version"
 require 'hydra/groupy/configuration'
+require 'hydra/groupy/exceptions'
+require 'hydra/groupy/railtie' if defined?(Rails)
 
+# Namespace for projecthydra modules
 module Hydra
   # A namespace module for configuring and managing group and role adapters
   module Groupy
     # @api public
     #
-    # Contains the Curate::Indexer configuration information that is referenceable from wit
+    # Contains the Hydra::Groupy configuration information that is referenceable from wit
     #
     # @return [Hydra::Group::Configuration]
     # @see Hydra::Group::Configuration
@@ -30,11 +33,16 @@ module Hydra
       configure! unless defined?(Rails)
     end
 
+    # Responsible for performing the configuration operation.
+    #
+    # @return [TrueClass] if configuration was performed
+    # @return [FalseClass] if configuration was not performed
     # @api private
     def self.configure!
       return false unless @configuration_block.respond_to?(:call)
       @configuration_block.call(configuration)
       @configuration_block = nil
+      true
     end
   end
 end
