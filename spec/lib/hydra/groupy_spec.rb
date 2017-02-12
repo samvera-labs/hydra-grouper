@@ -5,6 +5,24 @@ describe Hydra::Groupy do
     expect(Hydra::Groupy::VERSION).not_to be nil
   end
 
+  describe '.group_adapter' do
+    it 'delegates method to .configuration' do
+      configuration = instance_double(described_class::Configuration, group_adapter: true)
+      allow(described_class).to receive(:configuration).and_return(configuration)
+      expect(configuration).to receive(:group_adapter)
+      described_class.group_adapter
+    end
+  end
+
+  describe '.role_adapter' do
+    it 'delegates method to .configuration' do
+      configuration = instance_double(described_class::Configuration, role_adapter: true)
+      allow(described_class).to receive(:configuration).and_return(configuration)
+      expect(configuration).to receive(:role_adapter)
+      described_class.role_adapter
+    end
+  end
+
   describe '.configure' do
     before do
       Object.send(:remove_const, :Rails) if defined?(Rails)

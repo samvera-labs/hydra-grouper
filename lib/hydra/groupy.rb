@@ -8,6 +8,18 @@ module Hydra
   # A namespace module for configuring and managing group and role adapters
   module Groupy
     # @api public
+    # @return an object that conforms to the Hydra::Groupy::RoleAdapterInterface
+    def self.group_adapter
+      configuration.group_adapter
+    end
+
+    # @api public
+    # @return an object that conforms to the Hydra::Groupy::GroupAdapterInterface
+    def self.role_adapter
+      configuration.role_adapter
+    end
+
+    # @api public
     #
     # Contains the Hydra::Groupy configuration information that is referenceable from wit
     #
