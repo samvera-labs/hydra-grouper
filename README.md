@@ -11,3 +11,10 @@
 Like ZOMG! It's the long awaited separation of groups and roles for Project Hydra.
 
 [More details here](https://docs.google.com/document/d/1hXsu_LwI28a2vzWhMDDtEzLnXjyE0Bk6U_wY745IKFA/edit?usp=sharing).
+
+## Details
+
+Difference between Roles and Groups. Groups are a proxy for a set of users. Roles are a proxy for a set of actions. When naming groups, prefer the use nouns (admin, editor). Roles should be verbs (administrate, editing ETDs) and could include scoping direct objects for clarification.
+
+* `Hydra::Groupy.group_adapter` - Is the end point for common methods related to groups.
+* `Hydra::Groupy.role_adapter` - Is the end point for common methods related to roles.
