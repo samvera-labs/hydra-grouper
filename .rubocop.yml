@@ -46,3 +46,6 @@ Rails:
 RSpec/MessageSpies:
   Enabled: true
   EnforcedStyle: receive
+
+RSpec/MultipleExpectations:
+  Enabled: false

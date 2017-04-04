@@ -18,3 +18,44 @@ Difference between Roles and Groups. Groups are a proxy for a set of users. Role
 
 * `Hydra::Groupy.group_adapter` - Is the end point for common methods related to groups.
 * `Hydra::Groupy.role_adapter` - Is the end point for common methods related to roles.
+
+### Example Implementation
+
+```ruby
+class User
+  def groups
+    @groups ||= Hydra::Groupy.group_adapter.groups_for(user: self)
+  end
+
+  def institution_functions
+    @institution_functions ||= Hydra::Groupy.institution_adapter.institution_functions_for(user: self)
+  end
+
+  delegate :admin?, :superadmin?, to: :institution_functions
+end
+```
+
+## For Hyku
+
+```ruby
+# Hyku
+class HykuGroupRoleShimAdapter
+  def groups_for(user:)
+    user.roles.map do |role|
+      GroupValueObject.new(name: role.name, key: role.key)
+    end
+  end
+  def all_groups
+  end
+  def institution_functions_for(user:)
+  end
+  def all_institution_functions
+  end
+end
+
+Hydra::Groupy.configure do |config|
+  shim = HykuGroupRoleShimAdapter.new
+  config.group_adapter = shim
+  config.institution_function_adapter = shim
+end
+```
