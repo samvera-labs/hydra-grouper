@@ -49,3 +49,11 @@ RSpec/MessageSpies:
 
 RSpec/MultipleExpectations:
   Enabled: false
+
+Style/FileName:
+  Exclude:
+    - Gemfile
+    - hydra-groupy.gemspec
+
+Style/SymbolArray:
+  Enabled: false
