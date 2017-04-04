@@ -14,12 +14,12 @@ describe Hydra::Groupy do
     end
   end
 
-  describe '.role_adapter' do
+  describe '.institution_function_adapter' do
     it 'delegates method to .configuration' do
-      configuration = instance_double(described_class::Configuration, role_adapter: true)
+      configuration = instance_double(described_class::Configuration, institution_function_adapter: true)
       allow(described_class).to receive(:configuration).and_return(configuration)
-      expect(configuration).to receive(:role_adapter)
-      described_class.role_adapter
+      expect(configuration).to receive(:institution_function_adapter)
+      described_class.institution_function_adapter
     end
   end
 
