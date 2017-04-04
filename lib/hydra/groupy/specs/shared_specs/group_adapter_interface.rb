@@ -12,7 +12,14 @@ RSpec.shared_examples 'a Hydra::Groupy group adapter interface' do
   it { is_expected.to respond_to(:groups_for) }
   describe '#groups_for' do
     it 'requires a user: keyword arg' do
-      expect(adapter.method(:groups_for).parameters).to eq([[:keyreq, :user]])
+      expect(adapter.method(:groups_for).parameters).to eq([[:keyreq, :user_key]])
+    end
+  end
+
+  it { is_expected.to respond_to(:members_of) }
+  describe '#members_of' do
+    it 'requires a user: keyword arg' do
+      expect(adapter.method(:members_of).parameters).to eq([[:keyreq, :group_key]])
     end
   end
 end

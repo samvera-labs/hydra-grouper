@@ -12,6 +12,7 @@ module Hydra
       end
 
       attr_reader :name, :key
+      alias institution_function_key key
     end
   end
 end

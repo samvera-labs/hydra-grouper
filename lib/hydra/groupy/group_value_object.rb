@@ -13,6 +13,7 @@ module Hydra
       end
 
       attr_reader :name, :key
+      alias group_key key
     end
   end
 end
