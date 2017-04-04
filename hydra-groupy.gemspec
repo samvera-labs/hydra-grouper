@@ -1,5 +1,5 @@
-# coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
+
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'hydra/groupy/version'
 
@@ -10,8 +10,8 @@ Gem::Specification.new do |spec|
   spec.email         = ["jeremy.n.friesen@gmail.com"]
   spec.license       = "Apache-2.0"
 
-  spec.summary       = %q{Hydra group and role adapters}
-  spec.description   = %q{The long awaited separation of groups and roles for Project Hydra.}
+  spec.summary       = "Hydra group and role adapters"
+  spec.description   = "The long awaited separation of groups and roles for Project Hydra."
   spec.homepage      = "https://github.com/projecthydra-labs/hydra-groupy"
 
   spec.files         = `git ls-files -z`.split("\x0").reject do |f|
