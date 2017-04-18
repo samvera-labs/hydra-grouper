@@ -22,40 +22,39 @@ Difference between Roles and Groups. Groups are a proxy for a set of users. Role
 ### Example Implementation
 
 ```ruby
-class User
-  def groups
-    @groups ||= Hydra::Groupy.group_adapter.groups_for(user: self)
-  end
+# New proposal that changes the scope of Hydra::Groupy
+module Hydra::FunctionalRoles
+  class Admin
+    attr_reader :ability
 
-  def institution_functions
-    @institution_functions ||= Hydra::Groupy.institution_adapter.institution_functions_for(user: self)
-  end
+    def initialize(ability:)
+      @ability = ability
+    end
 
-  delegate :admin?, :superadmin?, to: :institution_functions
+    def apply
+      can :manage, all
+    end
+    delegate :can, :cannot, :all, to: :ability
+  end
 end
-```
 
-## For Hyku
+class Ability
+  include CanCan::Ability
 
-```ruby
-# Hyku
-class HykuGroupRoleShimAdapter
-  def groups_for(user:)
-    user.roles.map do |role|
-      GroupValueObject.new(name: role.name, key: role.key)
+  def initialize(user)
+    return if user.blank?
+    # Hyrax::FunctionalRoles.apply_ability_logic_to(ability: self)
+    # Hyrax::FunctionalRoles.applicable_for(ability: self)
+    apply_functional_roles_for(user: user)
+  end
+
+  def apply_functional_roles_for(user:)
+    # TODO: Change to be a query for the given user
+    [Hyrax::FunctionalRoles::Admin].each do |klass|
+      klass.new(ability: self).apply
     end
   end
-  def all_groups
-  end
-  def institution_functions_for(user:)
-  end
-  def all_institution_functions
-  end
-end
-
-Hydra::Groupy.configure do |config|
-  shim = HykuGroupRoleShimAdapter.new
-  config.group_adapter = shim
-  config.institution_function_adapter = shim
 end
 ```
+
+"AgentFunctionalRole" --< "FunctionalRole" --< "FunctionalRoleAbility" >-- "Hydra::FunctionalRoles Ruby Class"
