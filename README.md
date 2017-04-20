@@ -14,6 +14,48 @@ A work in progress. See the example implementation for details.
 
 ### Glossary
 
+
+* User - A single person
+* Group - Users may be members of groups
+* FunctionalRole - For combining the application abilities that are all needed to perform a conceptual activity (think of this as a molecule). There is a relationship between a FunctionalRole and either a User or a Group. We are working on naming that concept (for now lets call it assignee).
+* Hyrax::ApplicationAbility - see below (think of this as an atom)
+
+Implementing this in Rails `ActiveRecord::Base` terms might look like this:
+
+```ruby
+class User < ActiveRecord::Base
+  has_many :groups, through: :group_memberships
+  has_many :group_memberships
+  has_many :functional_roles, as: :assignee
+end
+
+class GroupMembership < ActiveRecord::Base
+  belongs_to :user
+  belongs_to :group
+end
+
+class Group < ActiveRecord::Base
+  has_many :group_memberships
+  has_many :users, through: :group_memberships
+  has_many :functional_roles, as: :assignee
+end
+
+class FunctionalRole < ActiveRecord::Base
+  belongs_to :assignee, polymorphic: true
+  has_many :functional_abilities
+end
+
+class FunctionalAbility < ActiveRecord::Base
+  belongs_to :functional_role
+
+  def application_ability_class
+    # We have a column :application_ability_class_name
+    # with an example value of Hyrax::ApplicationAbility::AdminApplicationAbility
+    application_ability_class_name.constantize
+  end
+end
+```
+
 ### Example Implementation
 
 ```ruby
@@ -28,8 +70,8 @@ module Hyrax # This should perhaps be pushed into the Hydra namespace.
     # @param [Ability] ability - an object that implements the CanCan::Ability interface
     # @return [Ability]
     def self.append_abilities_to!(ability:)
-      functionality_abilities_for(user: ability.current_user).each do |function_role|
-        functional_abilitiesnew(ability: ability).apply
+      functionality_abilities_for(user: ability.current_user).each do |functional_ability|
+        functional_ability.new(ability: ability).apply
       end
       ability
     end
