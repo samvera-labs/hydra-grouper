@@ -14,44 +14,78 @@ Like ZOMG! It's the long awaited separation of groups and roles for Project Hydr
 
 ## Details
 
-Difference between Roles and Groups. Groups are a proxy for a set of users. Roles are a proxy for a set of actions. When naming groups, prefer the use nouns (admin, editor). Roles should be verbs (administrate, editing ETDs) and could include scoping direct objects for clarification.
-
-* `Hydra::Groupy.group_adapter` - Is the end point for common methods related to groups.
-* `Hydra::Groupy.role_adapter` - Is the end point for common methods related to roles.
+A work in progress. See the example implementation for details
 
 ### Example Implementation
 
 ```ruby
-# New proposal that changes the scope of Hydra::Groupy
-module Hydra::FunctionalRoles
-  class Admin
-    attr_reader :ability
-
-    def initialize(ability:)
-      @ability = ability
+module Hyrax
+  module FunctionalAbility
+    # @api public
+    #
+    # Applies the functional abilities to the given ability based on the given ability's current_user.
+    # This allows for us to plugin additional abilities in implementing applications without the explicit need
+    # to re-open the Ability class. (more on that later).
+    #
+    # @param [Ability] ability - an object that implements the CanCan::Ability interface
+    # @return [Ability]
+    def self.append_abilities_to!(ability:)
+      functionality_abilities_for(user: ability.current_user).each do |function_role|
+        functional_abilitiesnew(ability: ability).apply
+      end
+      ability
     end
 
-    def apply
-      can :manage, all
+    # @api public
+    #
+    # For the given user, return an enumerable of all of the FunctionalAbility objects
+    # that apply, based on the user and their group memberships relation to their Functional Role
+    # at the institution
+    #
+    # @param [User] user for which we are looking up their assigned functional abilities.
+    # @return [Array<Hyrax::FunctionalAbility::BaseFunctionalAbility]
+    # @note This is the place for the new and improved user groups to be leveraged
+    def self.functionality_abilities_for(user:)
+      # TODO: Define an implementation of how this is looked up
     end
-    delegate :can, :cannot, :all, to: :ability
+
+    # An abstract class that defines the interface for implementations of a FunctionalAbility.
+    # A FunctionalAbility is a name-able atomic unit of permissions.
+    class BaseFunctionalAbility
+      extend Forwardable
+      def initialize(ability:)
+        @ability = ability
+      end
+      def_delegators :@ability, :can, all # etc.
+
+      def apply
+        raise NotImplementedError, "Subclasses must implement #apply"
+      end
+    end
+
+    # The set of specific cans and cannots that are applicable for an Admin.
+    class AdminFunctionalAbility < BaseFunctionalAbility
+      def apply
+        # NOTE: We are removing the short-circuit tradition of a guard `return unless admin?`
+        #       This FunctionalAbility will not be applied if it is not one of your functional roles at the institution.
+        can :read, :admin_dashboard
+      end
+    end
   end
-end
 
-class Ability
-  include CanCan::Ability
+  module Ability
+    extend ActiveSupport::Concern
 
-  def initialize(user)
-    return if user.blank?
-    # Hyrax::FunctionalRoles.apply_ability_logic_to(ability: self)
-    # Hyrax::FunctionalRoles.applicable_for(ability: self)
-    apply_functional_roles_for(user: user)
-  end
+    # @note assumes we are previously including Hydra::Ability
+    def hydra_default_permissions
+      super
+      apply_functional_abilities
+    end
 
-  def apply_functional_roles_for(user:)
-    # TODO: Change to be a query for the given user
-    [Hyrax::FunctionalRoles::Admin].each do |klass|
-      klass.new(ability: self).apply
+    private
+
+    def apply_functional_abilities
+      Hyrax::FunctionalAbility.append_abilities_to!(ability: self)
     end
   end
 end
