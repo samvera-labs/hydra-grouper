@@ -20,7 +20,7 @@ A work in progress. See the example implementation for details.
 * FunctionalRole - For combining the application abilities that are all needed to perform a conceptual activity (think of this as a molecule). There is a relationship between a FunctionalRole and either a User or a Group. We are working on naming that concept (for now lets call it assignee).
 * Hyrax::ApplicationAbility - see below (think of this as an atom)
 
-Implementing this in Rails `ActiveRecord::Base` terms might look like this:
+### Example Implementation
 
 ```ruby
 class User < ActiveRecord::Base
@@ -54,11 +54,7 @@ class FunctionalAbility < ActiveRecord::Base
     application_ability_class_name.constantize
   end
 end
-```
 
-### Example Implementation
-
-```ruby
 module Hyrax # This should perhaps be pushed into the Hydra namespace.
   module ApplicationAbility
     # @api public
