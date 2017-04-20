@@ -10,10 +10,11 @@
 
 ## Details
 
-A work in progress. See the example implementation for details.
+A work in progress. See the example implementation for details. The big benefit of this refactor is we can say:
+
+For a given user, what are all of my application abilities; That is to say what can I specifically do. It still requires reading the ruby code for the specific details of each ApplicationAbility that I have.
 
 ### Glossary
-
 
 * User - A single person
 * Group - Users may be members of groups
