@@ -1,4 +1,4 @@
-RSpec.shared_examples 'a Hydra::Groupy group adapter interface' do
+RSpec.shared_examples 'a Hydra::Grouper group adapter interface' do
   before do
     raise 'adapter must be set with `let(:adapter)`' unless
       defined? adapter

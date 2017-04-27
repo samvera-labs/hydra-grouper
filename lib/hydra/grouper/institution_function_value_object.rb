@@ -1,5 +1,5 @@
 module Hydra
-  module Groupy
+  module Grouper
     # A simple PORO that defines what an agent of an institution can do?
     #
     # The concept formerly known as Roles (because Roles and Groups are getting conflated)

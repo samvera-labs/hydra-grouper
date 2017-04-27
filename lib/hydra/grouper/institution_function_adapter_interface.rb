@@ -1,5 +1,5 @@
 module Hydra
-  module Groupy
+  module Grouper
     # Exposes the interface we are expecting for InstitutionFunction interactions
     class InstitutionFunctionAdapterInterface
       # @return [Array<InstitutionFunctionValueOjbect>] A list of unique InstitutionFunctionValueOjbect

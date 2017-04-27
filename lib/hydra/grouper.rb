@@ -1,27 +1,27 @@
-require "hydra/groupy/version"
-require 'hydra/groupy/configuration'
-require 'hydra/groupy/exceptions'
-require 'hydra/groupy/railtie' if defined?(Rails)
+require "hydra/grouper/version"
+require 'hydra/grouper/configuration'
+require 'hydra/grouper/exceptions'
+require 'hydra/grouper/railtie' if defined?(Rails)
 
 # Namespace for projecthydra modules
 module Hydra
   # A namespace module for configuring and managing group and role adapters
-  module Groupy
+  module Grouper
     # @api public
-    # @return an object that conforms to the Hydra::Groupy::GroupAdapterInterface
+    # @return an object that conforms to the Hydra::Grouper::GroupAdapterInterface
     def self.group_adapter
       configuration.group_adapter
     end
 
     # @api public
-    # @return an object that conforms to the Hydra::Groupy::InstitutionFunctionAdapterInterface
+    # @return an object that conforms to the Hydra::Grouper::InstitutionFunctionAdapterInterface
     def self.institution_function_adapter
       configuration.institution_function_adapter
     end
 
     # @api public
     #
-    # Contains the Hydra::Groupy configuration information that is referenceable from wit
+    # Contains the Hydra::Grouper configuration information that is referenceable from wit
     #
     # @return [Hydra::Group::Configuration]
     # @see Hydra::Group::Configuration

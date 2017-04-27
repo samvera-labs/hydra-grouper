@@ -1,10 +1,10 @@
-# Hydra::Groupy
+# Hydra::Grouper
 
-[![Gem Version](https://badge.fury.io/rb/hydra-groupy.png)](https://badge.fury.io/rb/hydra-groupy)
-[![Build Status](https://travis-ci.org/projecthydra-labs/hydra-groupy.png?branch=master)](https://travis-ci.org/projecthydra-labs/hydra-groupy)
-[![Code Climate](https://codeclimate.com/github/projecthydra-labs/hydra-groupy/badges/gpa.svg)](https://codeclimate.com/github/projecthydra-labs/hydra-groupy)
-[![Test Coverage](https://codeclimate.com/github/projecthydra-labs/hydra-groupy/badges/coverage.svg)](https://codeclimate.com/github/projecthydra-labs/hydra-groupy/coverage)
-[![Documentation Status](http://inch-ci.org/github/projecthydra-labs/hydra-groupy.svg?branch=master)](http://inch-ci.org/github/projecthydra-labs/hydra-groupy)
+[![Gem Version](https://badge.fury.io/rb/hydra-grouper.png)](https://badge.fury.io/rb/hydra-grouper)
+[![Build Status](https://travis-ci.org/projecthydra-labs/hydra-grouper.png?branch=master)](https://travis-ci.org/projecthydra-labs/hydra-grouper)
+[![Code Climate](https://codeclimate.com/github/projecthydra-labs/hydra-grouper/badges/gpa.svg)](https://codeclimate.com/github/projecthydra-labs/hydra-grouper)
+[![Test Coverage](https://codeclimate.com/github/projecthydra-labs/hydra-grouper/badges/coverage.svg)](https://codeclimate.com/github/projecthydra-labs/hydra-grouper/coverage)
+[![Documentation Status](http://inch-ci.org/github/projecthydra-labs/hydra-grouper.svg?branch=master)](http://inch-ci.org/github/projecthydra-labs/hydra-grouper)
 [![APACHE 2 License](http://img.shields.io/badge/APACHE2-license-blue.svg)](./LICENSE)
 [![Contributing Guidelines](http://img.shields.io/badge/CONTRIBUTING-Guidelines-blue.svg)](./CONTRIBUTING.md)
 

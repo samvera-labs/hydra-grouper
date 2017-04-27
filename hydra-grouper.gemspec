@@ -1,18 +1,18 @@
 lib = File.expand_path('../lib', __FILE__)
 
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'hydra/groupy/version'
+require 'hydra/grouper/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "hydra-groupy"
-  spec.version       = Hydra::Groupy::VERSION
+  spec.name          = "hydra-grouper"
+  spec.version       = Hydra::Grouper::VERSION
   spec.authors       = ["Jeremy Friesen"]
   spec.email         = ["jeremy.n.friesen@gmail.com"]
   spec.license       = "Apache-2.0"
 
-  spec.summary       = "Hydra group and role adapters"
+  spec.summary       = "Hydra Group / Role and General Conjecture"
   spec.description   = "The long awaited separation of groups and roles for Project Hydra."
-  spec.homepage      = "https://github.com/projecthydra-labs/hydra-groupy"
+  spec.homepage      = "https://github.com/projecthydra-labs/hydra-grouper"
 
   spec.files         = `git ls-files -z`.split("\x0").reject do |f|
     f.match(%r{^(test|spec|features)/})

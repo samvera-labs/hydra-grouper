@@ -53,7 +53,7 @@ RSpec/MultipleExpectations:
 Style/FileName:
   Exclude:
     - Gemfile
-    - hydra-groupy.gemspec
+    - hydra-grouper.gemspec
 
 Style/SymbolArray:
   Enabled: false

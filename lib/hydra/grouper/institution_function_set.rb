@@ -1,5 +1,5 @@
 module Hydra
-  module Groupy
+  module Grouper
     # A container object that exposes convenience methods related to the underlying institution_functions set.
     #
     # For a given InstitutionFunctionSet we can ask "are you an admin?"

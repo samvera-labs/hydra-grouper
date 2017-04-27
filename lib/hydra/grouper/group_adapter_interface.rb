@@ -1,5 +1,5 @@
 module Hydra
-  module Groupy
+  module Grouper
     # Exposes the interface we are expecting for Group interactions
     class GroupAdapterInterface
       # @return [Array<GroupValueOjbect>] A list of unique GroupValueObject

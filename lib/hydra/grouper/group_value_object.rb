@@ -1,6 +1,6 @@
 require 'dry-equalizer'
 module Hydra
-  module Groupy
+  module Grouper
     # A simple PORO that defines the basics of what we mean by a group.
     #
     # A Group is a set of people/users

@@ -1,11 +1,11 @@
 require 'rails/railtie'
 
 module Hydra
-  module Groupy
+  module Grouper
     # Connect into the boot sequence of a Rails application
     class Railtie < Rails::Railtie
       config.to_prepare do
-        Hydra::Groupy.configure!
+        Hydra::Grouper.configure!
       end
     end
   end

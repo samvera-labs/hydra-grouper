@@ -1,8 +1,8 @@
 require 'spec_helper'
 
-describe Hydra::Groupy do
+describe Hydra::Grouper do
   it "has a version number" do
-    expect(Hydra::Groupy::VERSION).not_to be nil
+    expect(Hydra::Grouper::VERSION).not_to be nil
   end
 
   describe '.group_adapter' do
@@ -41,7 +41,7 @@ describe Hydra::Groupy do
       after do
         Object.send(:remove_const, :Rails)
       end
-      it 'will not call the configuration block immediately but instead rely on the Hydra::Groupy::Railtie' do
+      it 'will not call the configuration block immediately but instead rely on the Hydra::Grouper::Railtie' do
         expect { |b| described_class.configure(&b) }.not_to yield_control
       end
     end
